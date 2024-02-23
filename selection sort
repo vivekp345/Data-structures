@@ -1,0 +1,63 @@
+#include<stdio.h>
+void read(int a[],int n);
+void print(int a[],int n);
+void swap(int *,int *);
+void sort(int a[],int n);
+
+void read(int a[],int b)
+{
+int i;
+for(i=0;i<b;i++)
+scanf("%d",&a[i]);
+}
+
+void print(int a[],int b)
+{
+int i;
+for(i=0;i<b;i++)
+printf("%d\n",a[i]);
+
+}
+
+void swap(int *a,int *b)
+{
+int temp;
+temp=*a;
+*a=*b;
+*b=temp;
+}
+
+void sort(int a[], int b)
+{
+int min,i,j;
+for(i=0;i<b-1;i++)
+{
+min=i;
+for(j=i+1;j<b;j++)
+{
+if(a[j]<a[min])
+min=j;
+}
+
+if(min!=i)
+swap(&a[min],&a[i]);
+
+}
+
+}
+
+int main()
+{
+int a[100],n;
+printf("enter the size of number");
+scanf("%d",&n);
+printf("enterthe array elemnt6s" );
+read(a,n);
+printf("array before sorting" );
+print(a,n);
+sort(a,n);
+printf("array after sorting" );
+print(a,n);
+return 0;
+
+}
