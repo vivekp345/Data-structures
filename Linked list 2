@@ -38,7 +38,7 @@ void insertend(struct node *head, int data) {
     temp = malloc(sizeof(struct node));
     temp->data = data;
     temp->link = NULL;
-    while (ptr->link != NULL) {
+    while (ptr->link!= NULL) {
         ptr = ptr->link;
     }
     ptr->link = temp;
@@ -73,35 +73,42 @@ void insertpos(struct node*head,int data,int pos )
 
 
 }
-
-void  deleteend(struct node *head)
+struct node*deleteend(struct node*head)
 {
-    struct node *ptr=head;
-    int coun=0,p=0;
-
-    while(ptr!=NULL) {
-        coun++;
-        ptr=ptr->link;
-        if (ptr->link->link=NULL)
-            ptr->link=NULL;
-    }
-    /*while(ptr=NULL){
-    ptr=ptr->link;
-    p++;
-    if(p==coun-1)
-    break;
-    }
-    ptr->link=NULL;*/
-
-
+struct node*temp,*ptr;
+temp=head;              
+ptr=head;
+while(temp->link!=NULL)
+{
+ptr=temp;
+temp=temp->link;
 }
-void deletebeg(struct  node **head)
+ptr->link=NULL;
+return head;
+}
+
+struct node *deletebeg(struct  node *head)
 {
-    struct  node *temp=*head,*ptr;
-    *temp=*temp->link;
+    struct  node *temp=head,*ptr;
+    head=head->link;
     free(temp);
-    printf("\nafter deleting at beg");
+    
+    return head;
 }
+
+void dpos(struct node*head,int pos;)
+{
+int p=0;
+struct node*temp,*ptr;
+temp=head;
+ptr=head;
+while(p!=pos-1)
+{p++;
+ptr=ptr->link;
+}
+temp->link=ptr->link;
+}
+
 
 int main() {
     struct node *head = malloc(sizeof(struct node));
@@ -130,10 +137,14 @@ int main() {
     insertpos(head,99,3);
     rep (head);
 
-    deletebeg(&head);
+    head=deletebeg(head);
+   printf("\nafter deleting at beginning");
     rep(head);
-
-    deleteend(head);
+    
+    
+    
+printf("\nafter deleting at ending");
+   head=deleteend(head);
     rep(head);
 
     count(head);
