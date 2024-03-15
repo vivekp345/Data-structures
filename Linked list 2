@@ -1,0 +1,143 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *link;
+};
+
+void rep(struct node *head) {
+    struct node *ptr;
+    ptr = head;
+    while (ptr != NULL) {
+        printf("\n%d", ptr->data);
+        ptr = ptr->link;
+    }
+}
+
+void count(struct node *head) {
+    int count = 0;
+    if (head == NULL) {
+        printf("linked list is empty");
+        return;
+    }
+    printf("\ndata in linked list is");
+    struct node *ptr = NULL;
+    ptr = head;
+    while (ptr != NULL) {
+        printf("\n%d", ptr->data);
+        count++;
+        ptr = ptr->link;
+    }
+    printf("\ncount=%d", count);
+}
+
+void insertend(struct node *head, int data) {
+    struct node *ptr, *temp;
+    ptr = head;
+    temp = malloc(sizeof(struct node));
+    temp->data = data;
+    temp->link = NULL;
+    while (ptr->link != NULL) {
+        ptr = ptr->link;
+    }
+    ptr->link = temp;
+    printf("\ndata after adding at ending");
+}
+
+void insertbeg(struct node **head, int data) {
+    struct node *temp;
+    temp = malloc(sizeof(struct node));
+    temp->data = data;
+    temp->link = *head;
+    *head = temp;
+    printf("\ndata after adding at beginning");
+}
+
+void insertpos(struct node*head,int data,int pos )
+{
+    int p=1;
+    struct node *temp,*ptr;
+    temp = malloc(sizeof(struct node));
+    temp->data = data;
+    temp->link = NULL;
+    ptr=head;
+    while(p!=pos-1)
+    {
+        ptr=ptr->link;
+        p++;
+    }
+    temp->link=ptr->link;
+    ptr->link=temp;
+    printf("\nafter inserting at position");
+
+
+}
+
+void  deleteend(struct node *head)
+{
+    struct node *ptr=head;
+    int coun=0,p=0;
+
+    while(ptr!=NULL) {
+        coun++;
+        ptr=ptr->link;
+        if (ptr->link->link=NULL)
+            ptr->link=NULL;
+    }
+    /*while(ptr=NULL){
+    ptr=ptr->link;
+    p++;
+    if(p==coun-1)
+    break;
+    }
+    ptr->link=NULL;*/
+
+
+}
+void deletebeg(struct  node **head)
+{
+    struct  node *temp=*head,*ptr;
+    *temp=*temp->link;
+    free(temp);
+    printf("\nafter deleting at beg");
+}
+
+int main() {
+    struct node *head = malloc(sizeof(struct node));
+    head->data = 45;
+    head->link = NULL;
+
+    struct node *current = malloc(sizeof(struct node));
+    current->data = 47;
+    current->link = NULL;
+    head->link = current;
+
+    current = malloc(sizeof(struct node));
+    current->data = 67;
+    current->link = NULL;
+    head->link->link = current;
+
+    printf("data at first\n");
+    rep(head);
+
+    insertend(head, 77);
+    rep(head);
+
+    insertbeg(&head, 88);
+    rep(head);
+
+    insertpos(head,99,3);
+    rep (head);
+
+    deletebeg(&head);
+    rep(head);
+
+    deleteend(head);
+    rep(head);
+
+    count(head);
+
+
+    return 0;
+}
