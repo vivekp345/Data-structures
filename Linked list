@@ -96,18 +96,20 @@ struct node *deletebeg(struct  node *head)
     return head;
 }
 
-void dpos(struct node*head,int pos;)
+void dpos(struct node*head,int pos)
 {
-int p=0;
+int p=1;
 struct node*temp,*ptr;
 temp=head;
 ptr=head;
 while(p!=pos-1)
 {p++;
 ptr=ptr->link;
+
 }
-temp->link=ptr->link;
+ptr->link=ptr->link->link;
 }
+
 
 
 int main() {
@@ -146,6 +148,11 @@ int main() {
 printf("\nafter deleting at ending");
    head=deleteend(head);
     rep(head);
+      
+      printf ("\nafter deleting at pos ");
+   dpos(head,2);
+    rep(head);
+    
 
     count(head);
 
