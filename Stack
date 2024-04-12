@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+}*top=NULL;
+
+void push(int data)
+{
+struct node*temp=malloc(sizeof(struct node*));
+temp->data=data;
+temp->next=top;
+top=temp;
+
+}
+ 
+ void print()
+ {
+ struct node *ptr;
+ ptr=top;
+ if (ptr==NULL)
+ printf("stack null");
+ else
+ while(ptr!=NULL)
+ {
+ printf("%d",ptr->data);
+ ptr=ptr->next;
+ }
+ }
+ 
+
+int main() {
+    struct node *head = malloc(sizeof(struct node0*));
+    top->data = 45;
+    top->next= NULL;
+    
+    push(40);
+    print();
+    return 1;
+
+}
